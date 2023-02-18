@@ -1,6 +1,9 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Registration() {
+  const navigate = useNavigate();;
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -40,8 +43,14 @@ function Registration() {
   useEffect(() => {
     if(Object.keys(formErrors).length === 0 && isSubmit){
         console.log(formValues);
-    //   dispatch(addTrainee(formValues));
-    //   navigate("/")
+        axios.post("http://localhost:8080/api/addUser", formValues)
+        .then((data) => {
+          console.log(data)
+          alert("Successfully Registered");
+          navigate("/")
+        })
+        .catch((err) => console.log(err));
+        setFormValues(initialValues);
     //   alert("Successfully Signed Up")
         
     }

@@ -9,6 +9,7 @@ import Home from "./components/login/Home";
 import Event from "./components/event/Event";
 import Merch from "./components/merchandise/Merch";
 import Agenda from "./components/agenda/Agenda";
+import Admin from "./components/admin/Admin";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/addEvent" element={<AddEvent />} />
           <Route path="/contact" element={<AddContact />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </div>
     </Router>

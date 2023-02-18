@@ -1,33 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { fetchUser } from '../../Actions/UserActions';
 
 function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const initialValues = {"userName" : "", "password" : "", "role": "user"}
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({})
   const [isSubmit, setIsSubmit] = useState(false)
 
-  // useEffect(()=>{
+  useEffect(()=>{
       
-  //   if(Object.keys(formErrors).length === 0 && isSubmit){
-  //     dispatch(fetchUser(formValues.userName, formValues.password));
-      
-  //     axios
-  //     .get(`http://localhost:8080/api/user/${formValues.userName}/${formValues.password}`)
-  //     .then((data) => {
-  //         document.getElementById('loginAfter').innerHTML = 'Login Successful'
-  //         console.log(formValues)
-  //         if(formValues.username === 'admin'){
-  //           navigate('/admin')
-  //         }else{
-  //           navigate('/home');
-  //         }
-  //     })
-  //     .catch((error) => {
-  //       // console.log(error)
-  //       document.getElementById('loginAfter').innerHTML = error.response.data.errorMessage
-  //     });
-  //   }
-  // },[formErrors])
+    if(Object.keys(formErrors).length === 0 && isSubmit){
+      axios
+      .get(`http://localhost:8080/api/getUser/${formValues.userName}/${formValues.password}`)
+      .then((data) => {
+          // console.log(formValues)
+          dispatch(fetchUser(data.data));
+          if(data.data.role === 'admin'){
+            navigate('/admin')
+          }else{
+            navigate('/home');
+          }
+      })
+      .catch((error) => {
+        console.log(error)
+        document.getElementById('errorMessage').innerHTML = 'Invalid Credentials'
+      });
+      setFormValues(initialValues);
+    }
+  },[formErrors])
 
   const handleChange = (e) => {
     const {name, value} = e.target
@@ -73,7 +78,7 @@ function Login() {
             <label>User Name</label>
             <input
               type="text"
-              name="useName"
+              name="userName"
               className="form-control"
               id="userName"
               placeholder="Enter user name"
@@ -86,7 +91,7 @@ function Login() {
           <div className="field my-3">
             <label>Password</label>
             <input
-              type="text"
+              type="password"
               name="password"
               className="form-control"
               id="password"
@@ -110,6 +115,7 @@ function Login() {
             </select>
           </div>
           <button className='btn btn-success' type="submit">Login</button>
+          <div id='errorMessage' className='text-danger py-3'></div>
         </div>
       </form>
       </div>
