@@ -3,21 +3,21 @@ import { Form, Button, Alert } from "react-bootstrap";
 
 const AddEvent = () => {
   const [formData, setFormData] = useState({
-    event_name: "",
+    eventName: "",
     description: "",
     location: "",
     date: "",
-    start_time: "",
-    end_time: "",
+    startTime: "",
+    endTime: "",
   });
   const [showError, setShowError] = useState(false);
   const [isValid, setIsValid] = useState({
-    event_name: true,
+    eventName: true,
     description: true,
     location: true,
     date: true,
-    start_time: true,
-    end_time: true,
+    startTime: true,
+    endTime: true,
   });
 
   const handleSubmit = (event) => {
@@ -25,12 +25,12 @@ const AddEvent = () => {
 
     // Validate the form data
     if (
-      !formData.event_name ||
+      !formData.eventName ||
       !formData.description ||
       !formData.location ||
       !formData.date ||
-      !formData.start_time ||
-      !formData.end_time
+      !formData.startTime ||
+      !formData.endTime
     ) {
       setShowError(true);
       return;
@@ -40,12 +40,12 @@ const AddEvent = () => {
     console.log(formData);
     // Clear the form data
     setFormData({
-      event_name: "",
+      eventName: "",
       description: "",
       location: "",
       date: "",
-      start_time: "",
-      end_time: "",
+      startTime: "",
+      endTime: "",
     });
     setShowError(false);
   };
@@ -61,7 +61,7 @@ const AddEvent = () => {
 
   const validateField = (name, value) => {
     switch (name) {
-      case "event_name":
+      case "eventName":
         if (value.trim().length === 0) {
           setIsValid((prevState) => ({ ...prevState, name: false }));
         } else {
@@ -89,14 +89,14 @@ const AddEvent = () => {
           setIsValid((prevState) => ({ ...prevState, date: true }));
         }
         break;
-      case "start_time":
+      case "startTime":
         if (!value) {
           setIsValid((prevState) => ({ ...prevState, startTime: false }));
         } else {
           setIsValid((prevState) => ({ ...prevState, startTime: true }));
         }
         break;
-      case "end_time":
+      case "endTime":
         if (!value) {
           setIsValid((prevState) => ({ ...prevState, endTime: false }));
         } else {
@@ -117,13 +117,13 @@ const AddEvent = () => {
           <Form.Label>Name</Form.Label>
           <Form.Control
             type="text"
-            name="event_name"
+            name="eventName"
             placeholder="Enter name"
-            value={formData.event_name}
+            value={formData.eventName}
             onChange={handleChange}
-            isInvalid={!isValid.event_name}
+            isInvalid={!isValid.eventName}
           />
-          {!isValid.event_name && (
+          {!isValid.eventName && (
             <Form.Control.Feedback type="invalid">
               Please enter a name
             </Form.Control.Feedback>
@@ -186,13 +186,13 @@ const AddEvent = () => {
           <Form.Label>Start Time</Form.Label>
           <Form.Control
             type="time"
-            name="start_time"
+            name="startTime"
             placeholder="Enter start time"
-            value={formData.start_time}
+            value={formData.startTime}
             onChange={handleChange}
-            isInvalid={!isValid.start_time}
+            isInvalid={!isValid.startTime}
           />
-          {!isValid.start_time && (
+          {!isValid.startTime && (
             <Form.Control.Feedback type="invalid">
               Please enter a start time
             </Form.Control.Feedback>
@@ -203,13 +203,13 @@ const AddEvent = () => {
           <Form.Label>End Time</Form.Label>
           <Form.Control
             type="time"
-            name="end_time"
+            name="endTime"
             placeholder="Enter end time"
-            value={formData.end_time}
+            value={formData.endTime}
             onChange={handleChange}
-            isInvalid={!isValid.end_time}
+            isInvalid={!isValid.endTime}
           />
-          {!isValid.end_time && (
+          {!isValid.endTime && (
             <Form.Control.Feedback type="invalid">
               Please enter an end time
             </Form.Control.Feedback>
