@@ -6,7 +6,7 @@ function Registration() {
     lastName: "",
     password: "",
     userName: "",
-    role: "",
+    role: "user",
   };
 
   const [formValues, setFormValues] = useState(initialValues);
@@ -22,10 +22,10 @@ function Registration() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if(name === "role"){
-        console.log(value);
-        setFormValues({...formValues, "role" : value})
-    }
+    // if(name === "role"){
+    //     console.log(value);
+    //     setFormValues({...formValues, "role" : value})
+    // } 
     setFormValues({ ...formValues, [name]: value });
     setFormErrors(validate(formValues))
     setIsTouched({...isTouched, [name]: true});
@@ -77,14 +77,14 @@ function Registration() {
   };
 
   return (
-    <div>
-      <form className="col-md-5 m-auto bg-light p-4  rounded" onSubmit={handleSubmit}>
+    <div className="p-3" style={{backgroundColor: '#ccffe6', height:"100vh"}}>
+      <form className="col-md-5 m-auto mt-5 bg-light p-4 rounded shadow" onSubmit={handleSubmit}>
         <div className="card-header">
           <h2>Register</h2>
         </div>
         <div className="ui divider"></div>
         <div className="ui form">
-          <div className="field">
+          <div className="field my-3">
             <label>First Name</label>
             <input
               type="text"
@@ -98,7 +98,7 @@ function Registration() {
             />
           </div>
           {isTouched.firstName && <p className="text-danger">{formErrors.firstName}</p>}
-          <div className="field">
+          <div className="field my-3">
             <label>Last Name</label>
             <input
               type="text"
@@ -112,7 +112,7 @@ function Registration() {
             />
           </div>
           {isTouched.lastName && <p className="text-danger">{formErrors.lastName}</p>}
-          <div className="field">
+          <div className="field my-3">
             <label>User Name</label>
             <input
               type="text"
@@ -126,7 +126,7 @@ function Registration() {
             />
           </div>
           {isTouched.userName && <p className="text-danger">{formErrors.userName}</p>}
-          <div className="field">
+          <div className="field my-3">
             <label>Password</label>
             <input
               type="password"
@@ -140,15 +140,16 @@ function Registration() {
             />
           </div>
           {isTouched.password && <p className="text-danger">{formErrors.password}</p>}
-          <div className="dropdown">
+          <div className="dropdown my-3">
             <select
               id="role"
               name="role"
+              className='px-3 py-1'
               value={formValues.role}
               onChange={handleChange}
             >
-              <option value="admin">Admin</option>
               <option value="user">User</option>
+              <option value="admin">Admin</option>
             </select>
           </div>
           <br></br>

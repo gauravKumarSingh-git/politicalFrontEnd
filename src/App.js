@@ -5,6 +5,10 @@ import Registration from "./components/login/Registration";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./components/login/Landing";
 import Login from "./components/login/Login";
+import Home from "./components/login/Home";
+import Event from "./components/event/Event";
+import Merch from "./components/merchandise/Merch";
+import Agenda from "./components/agenda/Agenda";
 
 function App() {
   return (
@@ -12,8 +16,12 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/event" element={<Event />} />
+          <Route path="/merch" element={<Merch />} />
+          <Route path="/agenda" element={<Agenda />} />
           <Route path="/register" element={<Registration />} />
-          <Route path="/home" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/addEvent" element={<AddEvent />} />
           <Route path="/contact" element={<AddContact />} />
         </Routes>
