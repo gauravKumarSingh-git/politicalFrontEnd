@@ -1,9 +1,9 @@
 import React from 'react'
 
-function UserContact(props) {
+function AdminContacts(props) {
   return (
     <div className="col-sm-10 m-auto my-5 shadow">
-      <h2 className='m-2 p-2'>Contact Us</h2>
+      <h2 className='m-2 p-2'>Contacted Queries</h2>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -14,13 +14,13 @@ function UserContact(props) {
           </tr>
         </thead>
         <tbody>
-          {props.contacts &&
-            props.contacts.sort((c1, c2) => c1.contactId - c2.contactId).map((contact) => (
+          {props.user.contacts &&
+            props.user.contacts.sort((c1, c2) => c1.contactId - c2.contactId).map((contact) => (
               <tr key={contact.contactId}>
                 <td>{contact.contactId}</td>
                 <td>{contact.name}</td>
                 <td>{contact.description}</td>
-                <td><button id={`join${contact.contactId}`} className="btn btn-primary" onClick={() => props.handleUpdate(contact)}>Update</button></td>
+                <td><button className="btn btn-danger" onClick={() => props.handleRemove(contact.contactId)}>Resolved</button></td>
               </tr>
             ))}
         </tbody>
@@ -29,4 +29,4 @@ function UserContact(props) {
   )
 }
 
-export default UserContact
+export default AdminContacts
