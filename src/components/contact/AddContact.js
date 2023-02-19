@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import Navbar from "../navbar/Navbar"
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddContact = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -24,17 +27,21 @@ const AddContact = () => {
       setShowError(true);
       return;
     }
+    // Do something with the form data
+    // console.log(formData);
+    axios.post("http://localhost:8080/api/addContact", formData)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
 
-
-// Do something with the form data
-console.log(formData);
-// Clear the form data
-setFormData({
-  name: "",
-  description: "",
-});
-setShowError(false);
-};
+    alert("Successfully added Event")
+    navigate("/contact")
+    // Clear the form data
+    setFormData({
+      name: "",
+      description: "",
+    });
+    setShowError(false);
+  } ;
 
 const handleChange = (contact) => {
 const { name, value } = contact.target;
