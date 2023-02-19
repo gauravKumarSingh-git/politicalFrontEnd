@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import Navbar from "../navbar/Navbar"
+import Navbar from "../navbar/Navbar";
 import axios from "axios";
-import { useNavigate} from "react-router-dom";
-
-
+import { useNavigate } from "react-router-dom";
 
 const AddContact = () => {
   const navigate = useNavigate();
@@ -18,112 +16,159 @@ const AddContact = () => {
     name: true,
     description: true,
   });
+  const [contacts, setContacts] = useState([]);
 
-  const handleSubmit = (contact) => {
-    contact.preventDefault();
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/contacts")
+      .then((response) => setContacts(response.data))
+      .catch((error) => console.log(error));
+  }, []);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     // Validate the form data
-    if (
-      !formData.name ||
-      !formData.description 
-    ){
+    if (!formData.name || !formData.description) {
       setShowError(true);
       return;
     }
-    // Do something with the form data
-    // console.log(formData);
-    axios.post("http://localhost:8080/api/contacts/AddContact", formData)
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err))
 
-    alert("Successfully added Contact Us")
-    navigate("/contact")
+    // Do something with the form data
+    axios
+      .post("http://localhost:8080/api/contacts/AddContact", formData)
+      .then((response) => {
+        console.log(response);
+        setContacts([...contacts, response.data]);
+      })
+      .catch((error) => console.log(error));
+
+    alert("Successfully added Contact Us");
+    navigate("/contact");
+
     // Clear the form data
     setFormData({
       name: "",
       description: "",
     });
     setShowError(false);
-  } ;
+  };
 
-const handleChange = (contact) => {
-const { name, value } = contact.target;
-setFormData((prevState) => ({
-  ...prevState,
-  [name]: value,
-}));
-validateField(name, value);
-};
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    validateField(name, value);
+  };
 
-const validateField = (name, value) => {
-switch (name) {
-  case "name":
-    if (value.trim().length === 0) {
-      setIsValid((prevState) => ({ ...prevState, name: false }));
-    } else {
-      setIsValid((prevState) => ({ ...prevState, name: true }));
+  const validateField = (name, value) => {
+    switch (name) {
+      case "name":
+        if (value.trim().length === 0) {
+          setIsValid((prevState) => ({ ...prevState, name: false }));
+        } else {
+          setIsValid((prevState) => ({ ...prevState, name: true }));
+        }
+        break;
+      case "description":
+        if (value.trim().length === 0) {
+          setIsValid((prevState) => ({
+            ...prevState,
+            description: false,
+          }));
+        } else {
+          setIsValid((prevState) => ({
+            ...prevState,
+            description: true,
+          }));
+        }
+        break;
+      default:
+        break;
     }
-    break;
-  case "description":
-    if (value.trim().length === 0) {
-      setIsValid((prevState) => ({ ...prevState, description: false }));
-    } else {
-      setIsValid((prevState) => ({ ...prevState, description: true }));
+  };
+
+  const handleUpdate = (event) => {
+    event.preventDefault();
+
+    // Validate the form data
+    if (!formData.name || !formData.description) {
+      setShowError(true);
+      return;
     }
-    break;
-  default:
-    break;
-}
-};
 
-return (
-  <div>
-    <Navbar />
-<div className="container mt-5 p-4 col-md-6 shadow rounded">
-  <h1>Contact Us</h1>
-  {showError && <Alert variant="danger">Please fill in all fields</Alert>}
-  <Form onSubmit={handleSubmit}>
-    <Form.Group controlId="formName">
-      <Form.Label>Name</Form.Label>
-      <Form.Control
-        type="text"
-        name="name"
-        placeholder="Enter name"
-        value={formData.name}
-        onChange={handleChange}
-        isInvalid={!isValid.name}
-      />
-      {!isValid.name && (
-        <Form.Control.Feedback type="invalid">
-          Please enter a name
-        </Form.Control.Feedback>
-      )}
-    </Form.Group>
+    // Update the contact with the form data
+    axios
+      .put("http://localhost:8080/api/contact/UpdateContact", formData)
+      .then((data) => {
+        console.log(data);
+        alert("Successfully updated");
+        navigate("/Contact");
+      })
+      .catch((err) => console.log(err));
 
-    <Form.Group controlId="formDescription">
-      <Form.Label>Description</Form.Label>
-      <Form.Control
-        as="textarea"
-        rows={3}
-        name="description"
-        placeholder="Enter description"
-        value={formData.description}
-        onChange={handleChange}
-        isInvalid={!isValid.description}
-      />
-      {!isValid.description && (
-        <Form.Control.Feedback type="invalid">
-          Please enter a description
-        </Form.Control.Feedback>
-      )}
-    </Form.Group>
-    <Button variant="primary" type="submit">
-      Submit
-    </Button>
-  </Form>
-</div>
-</div>
+    // Clear the form data
+    setFormData({
+      name: "",
+      description: "",
+    });
+    setShowError(false);
+  };
+
+  return (
+    <div>
+      <Navbar />
+      <div className="container mt-5 p-4 col-md-6 shadow rounded">
+        <h1>Contact Us</h1>
+        {showError && (
+          <Alert variant="danger">Please fill in all fields</Alert>
+          )}
+
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                isInvalid={!isValid.name}
+              />
+              <Form.Control.Feedback type="invalid">
+                Please enter a name.
+              </Form.Control.Feedback>
+            </Form.Group>
+      
+            <Form.Group controlId="formDescription">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Enter description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                isInvalid={!isValid.description}
+              />
+              <Form.Control.Feedback type="invalid">
+                Please enter a description.
+              </Form.Control.Feedback>
+            </Form.Group>
+      
+            <Button variant="primary" type="submit" className="mr-2">
+              Add
+            </Button>
+      
+            <Button variant="warning" onClick={handleUpdate}>
+              Update
+            </Button>
+          </Form>
+        </div>
+      </div>
 );
-      };
-export default AddContact;
+};
 
+export default AddContact;      

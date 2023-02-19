@@ -11,10 +11,10 @@ import Merch from "./components/merchandise/Merch";
 import Agenda from "./components/agenda/Agenda";
 import Admin from "./components/admin/Admin";
 import Profile from "./pages/Profile";
-import AdminEvents from "./components/event/AdminEvents";
 import EventForAdmin from "./components/admin/EventForAdmin";
 import UpdateEvent from "./components/event/UpdateEvent";
 import Cart from "./components/merchandise/Cart";
+import UpdateContact from "./components/contact/UpdateContact";
 
 function App() {
   // const initialValues = {
@@ -38,6 +38,7 @@ function App() {
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<AddContact />} />
+          <Route path="/contact/updateContact" element={<UpdateContact />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/event" element={<EventForAdmin />} />
