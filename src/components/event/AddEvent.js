@@ -1,9 +1,19 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import AdminNav from "../navbar/AdminNav";
 
-const AddEvent = (props) => {
-  const [formData, setFormData] = useState(props.initialValues);
+const AddEvent = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    eventName: "",
+    description: "",
+    location: "",
+    date: "",
+    startTime: "",
+    endTime: "",
+  });
   const [showError, setShowError] = useState(false);
   const [isValid, setIsValid] = useState({
     eventName: true,
@@ -31,7 +41,13 @@ const AddEvent = (props) => {
     }
 
     // Do something with the form data
-    console.log(formData);
+    // console.log(formData);
+    axios.post("http://localhost:8080/api/addEvent", formData)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
+
+    alert("Successfully added Event")
+    navigate("/admin")
     // Clear the form data
     setFormData({
       eventName: "",

@@ -13,16 +13,17 @@ import Admin from "./components/admin/Admin";
 import Profile from "./pages/Profile";
 import AdminEvents from "./components/event/AdminEvents";
 import EventForAdmin from "./components/admin/EventForAdmin";
+import UpdateEvent from "./components/event/UpdateEvent";
 
 function App() {
-  const initialValues = {
-    eventName: "",
-    description: "",
-    location: "",
-    date: "",
-    startTime: "",
-    endTime: "",
-  }
+  // const initialValues = {
+  //   eventName: "",
+  //   description: "",
+  //   location: "",
+  //   date: "",
+  //   startTime: "",
+  //   endTime: "",
+  // }
   return (
     <Router>
       <div className="App">
@@ -38,7 +39,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/event" element={<EventForAdmin />} />
-          <Route path="/admin/event/addEvent" element={<AddEvent initialValues={initialValues} />} />
+          <Route path="/admin/event/addEvent" element={<AddEvent />} />
+          <Route path="/admin/event/updateEvent" element={<UpdateEvent />} />
         </Routes>
       </div>
     </Router>
