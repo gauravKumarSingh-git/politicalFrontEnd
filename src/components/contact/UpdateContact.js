@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-import AdminNav from "../navbar/AdminNav";
+import Navbar from "../navbar/Navbar"
 
 function UpdateContact() {
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ function UpdateContact() {
 
     // Do something with the form data
     // console.log(formData);
-    axios.put("http://localhost:8080/api/updateContact", formData)
+    axios.put("http://localhost:8080/api/contact/UpdateContact", formData)
     .then((data) => {
         console.log(data)
         alert("Successfully updated");
@@ -77,7 +77,7 @@ function UpdateContact() {
 
   return (
     <div>
-      <AdminNav />
+      <Navbar />
       <div className="container mt-5 col-md-6">
         <h1>Add Contact</h1>
         {showError && <Alert variant="danger">Please fill in all fields</Alert>}
