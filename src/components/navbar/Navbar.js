@@ -29,6 +29,9 @@ function Navbar() {
               <Link to="/contact" className="nav-link text-weight">Contact Us</Link>
             </li>
             <li className="nav-item">
+              <Link to="/profile" className="nav-link text-weight">My Profile</Link>
+            </li>
+            <li className="nav-item">
               <Link to="/" className="nav-link text-weight">Logout</Link>
             </li>
           </ul>

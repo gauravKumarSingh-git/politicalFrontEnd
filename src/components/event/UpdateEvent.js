@@ -1,107 +1,6 @@
-import React, { useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
-import AdminNav from "../navbar/AdminNav";
+import React from 'react'
 
-const AddEvent = (props) => {
-  const [formData, setFormData] = useState(props.initialValues);
-  const [showError, setShowError] = useState(false);
-  const [isValid, setIsValid] = useState({
-    eventName: true,
-    description: true,
-    location: true,
-    date: true,
-    startTime: true,
-    endTime: true,
-  });
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Validate the form data
-    if (
-      !formData.eventName ||
-      !formData.description ||
-      !formData.location ||
-      !formData.date ||
-      !formData.startTime ||
-      !formData.endTime
-    ) {
-      setShowError(true);
-      return;
-    }
-
-    // Do something with the form data
-    console.log(formData);
-    // Clear the form data
-    setFormData({
-      eventName: "",
-      description: "",
-      location: "",
-      date: "",
-      startTime: "",
-      endTime: "",
-    });
-    setShowError(false);
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-    validateField(name, value);
-  };
-
-  const validateField = (name, value) => {
-    switch (name) {
-      case "eventName":
-        if (value.trim().length === 0) {
-          setIsValid((prevState) => ({ ...prevState, name: false }));
-        } else {
-          setIsValid((prevState) => ({ ...prevState, name: true }));
-        }
-        break;
-      case "description":
-        if (value.trim().length === 0) {
-          setIsValid((prevState) => ({ ...prevState, description: false }));
-        } else {
-          setIsValid((prevState) => ({ ...prevState, description: true }));
-        }
-        break;
-      case "location":
-        if (value.trim().length === 0) {
-          setIsValid((prevState) => ({ ...prevState, location: false }));
-        } else {
-          setIsValid((prevState) => ({ ...prevState, location: true }));
-        }
-        break;
-      case "date":
-        if (!value) {
-          setIsValid((prevState) => ({ ...prevState, date: false }));
-        } else {
-          setIsValid((prevState) => ({ ...prevState, date: true }));
-        }
-        break;
-      case "startTime":
-        if (!value) {
-          setIsValid((prevState) => ({ ...prevState, startTime: false }));
-        } else {
-          setIsValid((prevState) => ({ ...prevState, startTime: true }));
-        }
-        break;
-      case "endTime":
-        if (!value) {
-          setIsValid((prevState) => ({ ...prevState, endTime: false }));
-        } else {
-          setIsValid((prevState) => ({ ...prevState, endTime: true }));
-        }
-        break;
-      default:
-        break;
-    }
-  };
-
+function UpdateEvent() {
   return (
     <div>
       <AdminNav />
@@ -218,6 +117,7 @@ const AddEvent = (props) => {
         </Form>
       </div>
     </div>
-  );
-};
-export default AddEvent;
+  )
+}
+
+export default UpdateEvent

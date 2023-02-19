@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
+import Navbar from "../navbar/Navbar"
 
 const AddContact = () => {
   const [formData, setFormData] = useState({
@@ -66,7 +67,9 @@ switch (name) {
 };
 
 return (
-<div className="container mt-5 col-md-6">
+  <div>
+    <Navbar />
+<div className="container mt-5 p-4 col-md-6 shadow rounded">
   <h1>Contact Us</h1>
   {showError && <Alert variant="danger">Please fill in all fields</Alert>}
   <Form onSubmit={handleSubmit}>
@@ -108,6 +111,7 @@ return (
       Submit
     </Button>
   </Form>
+</div>
 </div>
 );
       };
