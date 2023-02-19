@@ -14,6 +14,7 @@ import Profile from "./pages/Profile";
 import AdminEvents from "./components/event/AdminEvents";
 import EventForAdmin from "./components/admin/EventForAdmin";
 import UpdateEvent from "./components/event/UpdateEvent";
+import Cart from "./components/merchandise/Cart";
 
 function App() {
   // const initialValues = {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/event" element={<Event />} />
           <Route path="/merch" element={<Merch />} />
+          <Route path="/merch/cart" element={<Cart />} />
           <Route path="/agenda" element={<Agenda />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
