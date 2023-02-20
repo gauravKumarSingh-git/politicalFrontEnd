@@ -3,7 +3,7 @@ const initialState = {
     total: 0
 }
 
-const merchReducer = (state = initialState, action) => {
+export const merchReducer = (state = initialState, action) => {
     switch(action.type){
         case 'addMerch': {
             const newMerchs = [...state.merchs, action.payload]
@@ -20,4 +20,11 @@ const merchReducer = (state = initialState, action) => {
     }
 }
 
-export default merchReducer;
+export const toUpdateMerchReducer = (state = {}, action) => {
+    switch(action.type){
+        case 'updateMerch' : 
+            return action.payload;
+        default : 
+            return state;
+    }
+}

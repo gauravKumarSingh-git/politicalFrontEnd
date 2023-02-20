@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { allUserReducer, toBeUpdatedReducer, userReducer } from "./UserReducer";
 import eventReducer from "./EventReducer";
-import merchReducer from "./MerchReducer";
+import { merchReducer, toUpdateMerchReducer } from "./MerchReducer";
 import { agendaReducer, agendasRed } from "./AgendaReducer";
 
 const allReducers = combineReducers ({
@@ -10,6 +10,7 @@ const allReducers = combineReducers ({
     toBeUpdate : toBeUpdatedReducer,
     event: eventReducer,    
     merch: merchReducer,
+    toUpdateMerch : toUpdateMerchReducer,
     agenda : agendaReducer,
     agendas : agendasRed
 })
