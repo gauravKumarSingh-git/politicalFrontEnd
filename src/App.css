@@ -24,7 +24,7 @@
 }
 
 .homeOverlay h3 {
-    color: yellowgreen;
+    color: yellow;
     padding: 5px;
 }
 
@@ -35,4 +35,8 @@
 }
 .homeOverlay ul li{
     padding: 3px;
+}
+
+.homeOverlay p {
+    font-size: 20px;
 }

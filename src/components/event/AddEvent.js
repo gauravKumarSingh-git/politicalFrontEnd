@@ -14,6 +14,7 @@ const AddEvent = () => {
     startTime: "",
     endTime: "",
   });
+  const [formErrors, setFormErrors] = useState({})
   const [showError, setShowError] = useState(false);
   const [isValid, setIsValid] = useState({
     eventName: true,
@@ -42,21 +43,29 @@ const AddEvent = () => {
 
     // Do something with the form data
     // console.log(formData);
-    axios.post("http://localhost:8080/api/addEvent", formData)
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err))
+    setFormErrors(validate(formData))
+    console.log(formErrors)
+    if(Object.keys(formErrors).length === 0){
+      console.log(formData)
+      axios.post("http://localhost:8080/api/addEvent", formData)
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err))
+  
+      alert("Successfully added Event")
+      navigate("/admin/event")
 
-    alert("Successfully added Event")
-    navigate("/admin")
+      setFormData({
+        eventName: "",
+        description: "",
+        location: "",
+        date: "",
+        startTime: "",
+        endTime: "",
+      });
+    }
+    
     // Clear the form data
-    setFormData({
-      eventName: "",
-      description: "",
-      location: "",
-      date: "",
-      startTime: "",
-      endTime: "",
-    });
+    
     setShowError(false);
   };
 
@@ -118,10 +127,19 @@ const AddEvent = () => {
     }
   };
 
+  const validate = (value) => {
+    const error = {}
+    if(value.startTime > value.endTime){
+      error.startTime = "Start time cannot be after end time"
+      error.endTime = "End time cannot be before start time"
+    }
+    return error;
+  }
+
   return (
     <div>
       <AdminNav />
-      <div className="container mt-5 col-md-6">
+      <div className="container mt-5 col-md-6 border shadow p-5">
         <h1>Add Event</h1>
         {showError && <Alert variant="danger">Please fill in all fields</Alert>}
         <Form onSubmit={handleSubmit}>
@@ -209,6 +227,7 @@ const AddEvent = () => {
                 Please enter a start time
               </Form.Control.Feedback>
             )}
+            {<p className="text-danger">{formErrors.startTime}</p>}
           </Form.Group>
 
           <Form.Group controlId="formEndTime">
@@ -226,9 +245,10 @@ const AddEvent = () => {
                 Please enter an end time
               </Form.Control.Feedback>
             )}
+            {<p className="text-danger">{formErrors.endTime}</p>}
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary my-3" type="submit">
             Add Event
           </Button>
         </Form>

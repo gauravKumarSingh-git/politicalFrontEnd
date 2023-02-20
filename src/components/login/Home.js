@@ -10,7 +10,8 @@ function Home() {
         alt="parliament"
         style={{ width: "100%" }}
       />
-      <div className="homeOverlay bg-secondary">
+      <div className="col-4"></div>
+      <div className="homeOverlay bg-dark">
         <div>
           <h3>OUR MOTTO</h3>
           <p className="p-3">Uniting coders for positive change</p>
