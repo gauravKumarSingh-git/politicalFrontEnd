@@ -5,7 +5,7 @@ function Landing() {
   return (
     <div>
         <NavBeforeLogin />
-        <img src="https://theleaflet.in/wp-content/uploads/2022/08/Elections-and-Indian-Democracy-scaled.jpg" alt="img" style={{width:'100%'}} />
+        <img src="https://www.lumascape.com.au/media/cache/2560x/0/5/135/d8d2d2/2-majlis.jpg"  alt="img" style={{width:'100%', height : "100vh", zIndex:-1}} />
         
     </div>
   )

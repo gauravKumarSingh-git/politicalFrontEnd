@@ -3,7 +3,7 @@ import Navbar from '../navbar/Navbar'
 import axios from 'axios'
 import MerchCard from './MerchCard'
 import NavMerch from './NavMerch'
-import { addMerch, removeMerch } from '../../Actions/MerchActions'
+import { addMerch } from '../../Actions/MerchActions'
 import { useDispatch } from 'react-redux'
 
 function Merch() {

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AdminNav from "../navbar/AdminNav";
 
 function UpdateEvent() {
