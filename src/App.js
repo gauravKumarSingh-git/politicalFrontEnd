@@ -15,6 +15,9 @@ import EventForAdmin from "./components/admin/EventForAdmin";
 import UpdateEvent from "./components/event/UpdateEvent";
 import Cart from "./components/merchandise/Cart";
 import UpdateContact from "./components/contact/UpdateContact";
+import AgendaForAdmin from "./components/admin/AgendaForAdmin";
+import AddAgenda from "./components/agenda/AddAgenda";
+import UpdateAgenda from "./components/agenda/UpdateAgenda";
 
 function App() {
   // const initialValues = {
@@ -44,6 +47,9 @@ function App() {
           <Route path="/admin/event" element={<EventForAdmin />} />
           <Route path="/admin/event/addEvent" element={<AddEvent />} />
           <Route path="/admin/event/updateEvent" element={<UpdateEvent />} />
+          <Route path="/admin/agenda" element={<AgendaForAdmin />} />
+          <Route path="/admin/agenda/addAgenda" element={<AddAgenda />} />
+          <Route path="/admin/agenda/updateAgenda" element={<UpdateAgenda />} />
         </Routes>
       </div>
     </Router>
