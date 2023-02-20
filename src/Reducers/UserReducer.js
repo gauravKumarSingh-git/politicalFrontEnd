@@ -1,5 +1,5 @@
 
-const userReducer = (state = {}, action) => {
+export const userReducer = (state = {}, action) => {
     switch(action.type){
         case 'fetchUser' : 
             return {...state, ...action.payload}
@@ -8,8 +8,28 @@ const userReducer = (state = {}, action) => {
         case 'deleteUser' : 
             return {}
         default : 
+            return state; 
+    }
+}
+
+const initialState = {
+    users : []
+}
+
+export const allUserReducer = (state = initialState, action) => {
+    switch(action.type){
+        case 'fetchAll' :
+            return {...state, users : action.payload}
+        default : 
             return state;
     }
 }
 
-export default userReducer;
+export const toBeUpdatedReducer = (state = {}, action) => {
+    switch(action.type){
+        case 'setToBeUpdated' : 
+            return action.payload;
+        default : 
+            return state;
+    }
+}

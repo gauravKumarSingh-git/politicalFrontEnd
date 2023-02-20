@@ -5,6 +5,15 @@ export const fetchUser = (user) =>
         dispatch({type: 'fetchUser', payload: user});
     };
 
+export const fetchAllUsers = () => 
+    async function (dispatch){
+        await axios.get('http://localhost:8080/api/getAllUsers')
+        .then((res) => {
+            dispatch({type: "fetchAll", payload: res.data})
+        })
+        .catch((err) => console.log(err));
+    };
+
 export const updateUser = (userId) => 
     async function (dispatch){
         await axios.get(`http://localhost:8080/api/getUser/${userId}`)
@@ -17,5 +26,10 @@ export const updateUser = (userId) =>
 export const deleteUser = () => 
     function (dispatch){
         dispatch({type: 'deleteUser'});
+    }
+
+export const setToBeUpdated = (user) => 
+    function (dispatch) {
+        dispatch({type: 'setToBeUpdated', payload: user})
     }
 
