@@ -20,6 +20,7 @@ import AddAgenda from "./components/agenda/AddAgenda";
 import UpdateAgenda from "./components/agenda/UpdateAgenda";
 import UserForAdmin from "./components/admin/UserForAdmin";
 import UpdateUser from "./components/user/UpdateUser";
+import ContactForAdmin from "./components/admin/ContactForAdmin";
 
 function App() {
   // const initialValues = {
@@ -54,6 +55,7 @@ function App() {
           <Route path="/admin/agenda/updateAgenda" element={<UpdateAgenda />} />
           <Route path="/admin/users" element={<UserForAdmin />} />
           <Route path="/admin/users/updateUser" element={<UpdateUser />} />
+          <Route path="/admin/queries" element={<ContactForAdmin />} />
 
         </Routes>
       </div>
