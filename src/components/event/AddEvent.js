@@ -202,6 +202,7 @@ const AddEvent = () => {
               name="date"
               placeholder="Enter date"
               value={formData.date}
+              min={new Date().toISOString().split("T")[0]}
               onChange={handleChange}
               isInvalid={!isValid.date}
             />
