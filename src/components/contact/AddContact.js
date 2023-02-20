@@ -90,8 +90,8 @@ const AddContact = () => {
     }
   };
 
-  const handleUpdate = (event) => {
-    event.preventDefault();
+  const handleUpdate = (contact) => {
+    contact.preventDefault();
 
     // Validate the form data
     if (!formData.name || !formData.description) {
