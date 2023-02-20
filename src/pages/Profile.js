@@ -5,6 +5,7 @@ import UserEvents from '../components/event/UserEvents'
 import axios from 'axios'
 import { updateUser } from '../Actions/UserActions'
 import UserDetails from './UserDetails'
+import UserMerchs from '../components/merchandise/UserMerchs'
 
 function Profile() {
     const dispatch = useDispatch();
@@ -26,7 +27,7 @@ function Profile() {
         <Navbar />
         <UserDetails user = {user} />
         <UserEvents user = {user} handleRemove = {handleRemove} />
-
+        <UserMerchs user = {user} />
     </div>
   )
 }
