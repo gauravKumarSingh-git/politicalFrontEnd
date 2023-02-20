@@ -14,9 +14,9 @@ function NavBeforeLogin() {
     }
   return (
     <div>
-      <nav className="navbar navbar-dark bg-dark px-5 text-light ">
-        <span onClick={handleHome}>Apna Political Party</span>
-        <div>
+      <nav className="navbar navbar-dark bg-black px-5 text-light ">
+        <span onClick={handleHome}></span>
+        <div style={{paddingTop:'35px'}}>
           <button type="button" className="btn btn-outline-light mx-2  float-right" onClick={handleLogin}>Login</button>
           <button type="button" className="btn btn-outline-light mx-2 float-right" onClick={handleRegister} >Register</button>
         </div>

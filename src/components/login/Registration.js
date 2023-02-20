@@ -86,8 +86,8 @@ function Registration() {
   };
 
   return (
-    <div className="p-3" style={{backgroundColor: '#ccffe6', height:"100vh"}}>
-      <form className="col-md-5 m-auto mt-5 bg-light p-4 rounded shadow" onSubmit={handleSubmit}>
+    <div className="p-3" style={{backgroundImage: "linear-gradient(#0C1B6B,black)",color: "black", height:"569px"}}>
+      <form className="col-md-5 m-auto mt-5 p-4 rounded shadow"  style={{color:'white'}} onSubmit={handleSubmit}>
         <div className="card-header">
           <h2>Register</h2>
         </div>
@@ -161,8 +161,6 @@ function Registration() {
               <option value="admin">Admin</option>
             </select>
           </div>
-          <br></br>
-          <br></br>
           <button className="btn btn-primary">Register</button>
         </div>
       </form>

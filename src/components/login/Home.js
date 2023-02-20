@@ -8,10 +8,10 @@ function Home() {
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/3/31/New_Parliament_Building.jpg"
         alt="parliament"
-        style={{ width: "100%" }}
+        style={{ width: "100%",height:"90.5vh"}}
       />
       <div className="col-4"></div>
-      <div className="homeOverlay bg-dark">
+      <div className="homeOverlay bg-dark" style={{opacity:'0.7'}}>
         <div>
           <h3>OUR MOTTO</h3>
           <p className="p-3">Uniting coders for positive change</p>

@@ -137,10 +137,11 @@ const AddEvent = () => {
   }
 
   return (
-    <div>
+    <div style={{backgroundImage: "linear-gradient(black,#0C1B6B)",color: "white", height:"800px"}}>
       <AdminNav />
-      <div className="container mt-5 col-md-6 border shadow p-5">
-        <h1>Add Event</h1>
+      <div className="container mt-3 col-md-6 shadow p-5">
+     
+        <h1>Add Event</h1><br></br>
         {showError && <Alert variant="danger">Please fill in all fields</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formName">
@@ -152,7 +153,7 @@ const AddEvent = () => {
               value={formData.eventName}
               onChange={handleChange}
               isInvalid={!isValid.eventName}
-            />
+          />
             {!isValid.eventName && (
               <Form.Control.Feedback type="invalid">
                 Please enter a name

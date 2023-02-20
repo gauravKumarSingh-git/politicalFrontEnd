@@ -3,6 +3,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import Navbar from "../navbar/Navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import '../contact/Contact.css'
 
 const AddContact = () => {
   const navigate = useNavigate();
@@ -118,10 +119,14 @@ const AddContact = () => {
   };
 
   return (
-    <div>
+    <div className="Background">
+      
       <Navbar />
+      {/* <div > */}
       <div className="container mt-5 p-4 col-md-6 shadow rounded">
-        <h1>Contact Us</h1>
+        
+        <h1 style={{color:'white'}}>Contact Us</h1>
+        <br></br>
         {showError && (
           <Alert variant="danger">Please fill in all fields</Alert>
           )}
@@ -157,13 +162,15 @@ const AddContact = () => {
                 Please enter a description.
               </Form.Control.Feedback>
             </Form.Group>
-      
+      <br></br>
             <Button variant="primary" type="submit" className="mr-2">
               Submit
             </Button>
           </Form>
         </div>
       </div>
+      // </div>
+      
 );
 };
 

@@ -1,0 +1,8 @@
+#marquee{
+    padding: 10px 0;
+    color: white;
+    margin-top: 12px;
+    font-size: 40px;
+    font-family: fantasy;
+    word-spacing: 15px;
+}

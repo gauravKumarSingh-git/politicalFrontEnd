@@ -67,10 +67,10 @@ function Login() {
 
   return (
     <div>
-      <div className="p-3" style={{backgroundColor: '#FDE0B2', height:"100vh"}}>
-      <form className="col-md-5 m-auto mt-5 bg-light p-4 rounded shadow" onSubmit={handleSubmit}>
+      <div className="p-3" style={{backgroundImage: "linear-gradient(#0C1B6B,black)",color: "black", height:"569px"}}>
+      <form className="col-md-5 m-auto mt-5 p-4 rounded shadow" style={{color:'white'}} onSubmit={handleSubmit} >
         <div className="card-header">
-          <h2>Login</h2>
+          <h2 >Login</h2>
         </div>
         <div className="ui divider"></div>
         <div className="ui form">
@@ -114,7 +114,7 @@ function Login() {
               <option value="admin">Admin</option>
             </select>
           </div>
-          <button className='btn btn-success' type="submit">Login</button>
+          <button className='btn btn-primary' type="submit">Login</button>
           <div id='errorMessage' className='text-danger py-3'></div>
         </div>
       </form>
