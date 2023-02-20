@@ -21,6 +21,9 @@ import UpdateAgenda from "./components/agenda/UpdateAgenda";
 import UserForAdmin from "./components/admin/UserForAdmin";
 import UpdateUser from "./components/user/UpdateUser";
 import ContactForAdmin from "./components/admin/ContactForAdmin";
+import MerchForAdmin from "./components/admin/MerchForAdmin";
+import AddMerch from "./components/merchandise/AddMerch";
+import UpdateMerch from "./components/merchandise/UpdateMerch";
 
 function App() {
   // const initialValues = {
@@ -56,6 +59,9 @@ function App() {
           <Route path="/admin/users" element={<UserForAdmin />} />
           <Route path="/admin/users/updateUser" element={<UpdateUser />} />
           <Route path="/admin/queries" element={<ContactForAdmin />} />
+          <Route path="/admin/merchandise" element={<MerchForAdmin />} />
+          <Route path="/admin/merchandise/addMerch" element={<AddMerch />} />
+          <Route path="/admin/merchandise/updateMerch" element={<UpdateMerch />} />
 
         </Routes>
       </div>

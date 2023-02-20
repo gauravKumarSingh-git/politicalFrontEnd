@@ -4,7 +4,9 @@ import AdminEvents from '../event/AdminEvents'
 import AdminNav from '../navbar/AdminNav'
 import AgendaForAdmin from './AgendaForAdmin'
 import EventForAdmin from './EventForAdmin'
+import MerchForAdmin from './MerchForAdmin'
 import UserForAdmin from './UserForAdmin'
+import ContactForAdmin from './ContactForAdmin'
 
 function Admin() {
   
@@ -15,9 +17,9 @@ function Admin() {
       <ul style={{listStyle : "none"}}>
         <li className='m-2 p-5 d-inline-block bg-warning rounded'><Link style={{textDecoration: "none"}} to="/admin/event" element={EventForAdmin}> Events</Link> </li>
         <li className='m-2 p-5 d-inline-block bg-warning rounded'><Link style={{textDecoration: "none"}} to="/admin/users" element={UserForAdmin} > Users</Link></li>
-        <li className='m-2 p-5 d-inline-block bg-warning rounded'><Link style={{textDecoration: "none"}} to="/admin/queries" element={AdminEvents} > User Queries</Link></li>
+        <li className='m-2 p-5 d-inline-block bg-warning rounded'><Link style={{textDecoration: "none"}} to="/admin/queries" element={ContactForAdmin} > User Queries</Link></li>
         <li className='m-2 p-5 d-inline-block bg-warning rounded'><Link style={{textDecoration: "none"}} to="/admin/agenda" element={AgendaForAdmin} >Agenda </Link></li>
-        <li className='m-2 p-5 d-inline-block bg-warning rounded'><Link style={{textDecoration: "none"}} to="/admin/merchandise" element={AdminEvents} > Merchandise</Link></li>
+        <li className='m-2 p-5 d-inline-block bg-warning rounded'><Link style={{textDecoration: "none"}} to="/admin/merchandise" element={MerchForAdmin} > Merchandise</Link></li>
       </ul>
       
     </div>
