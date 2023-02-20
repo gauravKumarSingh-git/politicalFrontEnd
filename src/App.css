@@ -1,3 +1,38 @@
 *{
     font-size: 15px;
 }
+
+.landingContainer{
+    position: relative;
+    color: white;
+}
+
+.landingOverlay {
+    position: absolute;
+    top: 30vh;
+    width: 100%;
+    text-align: center;
+}
+
+.homeOverlay {
+    position: absolute;
+    top: 30vh;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.homeOverlay h3 {
+    color: yellowgreen;
+    padding: 5px;
+}
+
+.homeOverlay ul{
+    list-style: none;
+    /* text-align: justify; */
+
+}
+.homeOverlay ul li{
+    padding: 3px;
+}

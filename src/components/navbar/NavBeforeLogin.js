@@ -15,7 +15,7 @@ function NavBeforeLogin() {
   return (
     <div>
       <nav className="navbar navbar-dark bg-dark px-5 text-light ">
-        <span onClick={handleHome}>Political Party</span>
+        <span onClick={handleHome}>Apna Political Party</span>
         <div>
           <button type="button" className="btn btn-outline-light mx-2  float-right" onClick={handleLogin}>Login</button>
           <button type="button" className="btn btn-outline-light mx-2 float-right" onClick={handleRegister} >Register</button>
