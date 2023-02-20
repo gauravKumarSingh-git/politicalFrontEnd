@@ -159,11 +159,7 @@ const AddContact = () => {
             </Form.Group>
       
             <Button variant="primary" type="submit" className="mr-2">
-              Add
-            </Button>
-      
-            <Button variant="warning" onClick={handleUpdate}>
-              Update
+              Submit
             </Button>
           </Form>
         </div>
