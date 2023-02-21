@@ -7,7 +7,7 @@ export const fetchUser = (user) =>
 
 export const fetchAllUsers = () => 
     async function (dispatch){
-        await axios.get('http://localhost:8080/api/getAllUsers')
+        await axios.get('http://localhost:8080/api/getAll')
         .then((res) => {
             dispatch({type: "fetchAll", payload: res.data})
         })

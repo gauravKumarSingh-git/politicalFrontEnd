@@ -41,10 +41,10 @@ function AddAgenda() {
     <div>
       <div
         className="p-3"
-        style={{ backgroundColor: "#ccffe6", height: "100vh" }}
+        style={{backgroundImage: "linear-gradient(#0C1B6B,black)",color: "black", height:"570px"}}
       >
         <form
-          className="col-md-5 m-auto mt-5 bg-light p-4 rounded shadow"
+          className="col-md-5 m-auto mt-5 bg-light p-4 rounded shadow" 
           onSubmit={handleSubmit}
         >
           <div className="card-header">
