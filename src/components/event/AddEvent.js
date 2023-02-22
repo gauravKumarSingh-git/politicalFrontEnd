@@ -41,8 +41,6 @@ const AddEvent = () => {
       return;
     }
 
-    // Do something with the form data
-    // console.log(formData);
     setFormErrors(validate(formData))
     console.log(formErrors)
     if(Object.keys(formErrors).length === 0){

@@ -6,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 import AdminNav from "../navbar/AdminNav";
 
 function UpdateEvent() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const initialValues = useSelector((state) => state.event);
-//   console.log(initialValues);
   const [formData, setFormData] = useState(initialValues);
   const [showError, setShowError] = useState(false);
   const [isValid, setIsValid] = useState({
@@ -37,8 +36,6 @@ function UpdateEvent() {
       return;
     }
 
-    // Do something with the form data
-    // console.log(formData);
     setFormErrors(validate(formData))
     if(Object.keys(formErrors).length === 0){
 

@@ -12,7 +12,6 @@ function Event() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    // console.log(user);
     axios.get('http://localhost:8080/api/getEvents')
     .then((data) => {
       console.log(data);
@@ -22,17 +21,13 @@ function Event() {
   },[])
 
   const handleEventJoin = (event) => {
-    // console.log(event);
     for(let eve in user.events){
       if(eve.eventId === event.eventId) return;
     }
     let newEvent;
-    // console.log(user);
-    if(user.events.length === 0) newEvent = event;
+    if(user.events.length === 0) newEvent = [event];
     else newEvent = [...user.events, event];
-    // console.log(newEvent)
     const newUser = {...user, events : newEvent}
-    // console.log(newUser)
     axios.put('http://localhost:8080/api/updateUser', newUser)
     .then((data) => {
       console.log(data)
