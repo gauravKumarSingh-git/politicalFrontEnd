@@ -8,7 +8,6 @@ import Navbar from "../navbar/Navbar"
 function UpdateContact() {
     const navigate = useNavigate();
   const initialValues = useSelector((state) => state.contact);
-//   console.log(initialValues);
   const [formData, setFormData] = useState(initialValues);
   const [showError, setShowError] = useState(false);
   const [isValid, setIsValid] = useState({

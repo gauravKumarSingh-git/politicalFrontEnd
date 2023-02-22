@@ -133,7 +133,7 @@ const AddContact = () => {
 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formName">
-              <Form.Label>Name</Form.Label>
+              <Form.Label style={{color:'white'}}>Name</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter name"
@@ -148,7 +148,7 @@ const AddContact = () => {
             </Form.Group>
       
             <Form.Group controlId="formDescription">
-              <Form.Label>Description</Form.Label>
+              <Form.Label style={{color:'white'}}>Description</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
