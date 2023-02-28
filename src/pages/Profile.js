@@ -23,7 +23,7 @@ function Profile() {
     }
 
   return (
-    <div>
+    <div className='eventBackground' style={{height : "150vh"}}>
         <Navbar />
         <UserDetails user = {user} />
         <UserEvents user = {user} handleRemove = {handleRemove} />

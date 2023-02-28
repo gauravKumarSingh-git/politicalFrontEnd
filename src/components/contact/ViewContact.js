@@ -7,7 +7,6 @@ function ViewContact(props) {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>Description</th>
           </tr>
@@ -16,7 +15,6 @@ function ViewContact(props) {
           {props.contacts &&
             props.contacts.sort((e1, e2) => e1.contactId - e2.contactId).map((contact) => (
               <tr key={contact.contactId}>
-                <td>{contact.contactId}</td>
                 <td>{contact.name}</td>
                 <td>{contact.description}</td>
               </tr>

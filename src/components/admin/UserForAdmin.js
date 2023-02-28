@@ -20,7 +20,7 @@ function UserForAdmin() {
   }
 
   return (
-    <div>
+    <div className='eventBackground' style={{height:"100%"}}>
         <AdminNav />
         <AllUsers users = {users} handleUserUpdate = {handleUserUpdate}/>
     </div>

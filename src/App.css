@@ -40,3 +40,8 @@
 .homeOverlay p {
     font-size: 20px;
 }
+
+.eventBackground {
+    background-image: linear-gradient(black, blue);
+    height: 100vh;
+}

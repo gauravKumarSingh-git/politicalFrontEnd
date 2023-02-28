@@ -39,7 +39,7 @@ function Event() {
   }
 
   return (
-    <div>
+    <div className='eventBackground'>
       <Navbar />
       <AllEvents events={events} handleEventJoin = {handleEventJoin} user = {user}/>
     </div>

@@ -7,7 +7,6 @@ function AdminContacts(props) {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>Description</th>
             <th></th>
@@ -17,7 +16,6 @@ function AdminContacts(props) {
           {props.user.contacts &&
             props.user.contacts.sort((c1, c2) => c1.contactId - c2.contactId).map((contact) => (
               <tr key={contact.contactId}>
-                <td>{contact.contactId}</td>
                 <td>{contact.name}</td>
                 <td>{contact.description}</td>
                 <td><button className="btn btn-danger" onClick={() => props.handleRemove(contact.contactId)}>Resolved</button></td>

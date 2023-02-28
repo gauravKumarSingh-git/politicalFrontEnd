@@ -42,7 +42,7 @@ function EventForAdmin() {
   return (
     <div>
         <AdminNav />
-        <div className='d-flex col-sm-10 m-auto mt-5 mb-0 shadow'>
+        <div className='d-flex col-sm-10 m-auto mt-5 mb-0 shadow rounded' style={{backgroundColor: "white"}}>
           <h2 className='m-2 p-2 col-10'>Events</h2>
           <button className='btn btn-success col-2 m-auto p-1' style={{width:"120px", height:"40px"}} onClick={() => handleAddEvent()}>+ Add Event</button>
         </div>

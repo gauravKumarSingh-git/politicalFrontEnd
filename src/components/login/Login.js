@@ -67,7 +67,7 @@ function Login() {
 
   return (
     <div>
-      <div className="p-3" style={{backgroundImage: "linear-gradient(#0C1B6B,black)",color: "black", height:"569px"}}>
+      <div className="p-3" style={{backgroundImage: "linear-gradient(#0C1B6B,black)",color: "black", height:"100vh"}}>
       <form className="col-md-5 m-auto mt-5 p-4 rounded shadow" style={{color:'white'}} onSubmit={handleSubmit} >
         <div className="card-header">
           <h2 >Login</h2>
@@ -102,7 +102,7 @@ function Login() {
             />
           </div>
           {<p className="text-danger">{formErrors.password}</p>}
-          <div className="dropdown my-3">
+          {/* <div className="dropdown my-3">
             <select
               id="role"
               name="role"
@@ -113,7 +113,7 @@ function Login() {
               <option value="user">User</option>
               <option value="admin">Admin</option>
             </select>
-          </div>
+          </div> */}
           <button className='btn btn-primary' type="submit">Login</button>
           <div id='errorMessage' className='text-danger py-3'></div>
         </div>

@@ -79,7 +79,7 @@ const AddEvent = () => {
             }}
           >
             <AdminNav />
-            <div className="container mt-3 col-md-6 shadow p-5">
+            <div className="container mt-3 col-md-6 shadow p-5 rounded">
               <h1>Add Event</h1>
               <br></br>
               <Form onSubmit={handleSubmit}>
