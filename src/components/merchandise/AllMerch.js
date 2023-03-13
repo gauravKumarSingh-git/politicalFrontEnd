@@ -7,7 +7,6 @@ function AllMerch(props) {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Item Name</th>
             <th>Price</th>
             <th></th>
@@ -17,7 +16,6 @@ function AllMerch(props) {
           {props.merchs &&
             props.merchs.sort((e1, e2) => e1.itemId - e2.itemId).map((item) => (
               <tr key={item.itemId}>
-                <td>{item.itemId}</td>
                 <td>{item.itemName}</td>
                 <td>{item.price}</td>
                 <td><button className="btn btn-primary" onClick={() => props.handleMerchUpdate(item)}>Update</button></td>

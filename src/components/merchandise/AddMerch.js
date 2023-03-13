@@ -7,7 +7,6 @@ function AddMerch() {
   const navigate = useNavigate();
   const [formValue, setFormValue] = useState({ itemName: "" , price: ""});
   const [formError, setFormError] = useState({});
-  // const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,7 +27,6 @@ function AddMerch() {
         })
         .catch((err) => console.log(err));
     }
-    // setIsSubmit(true);
   };
 
   const validate = (value) => {
@@ -38,6 +36,8 @@ function AddMerch() {
     }
     if(!value.price){
       errors.price = "Price cannot be empty"
+    }else if(value.price <= 0){
+      errors.price = "Price cannot be negative"
     }
     return errors;
   };

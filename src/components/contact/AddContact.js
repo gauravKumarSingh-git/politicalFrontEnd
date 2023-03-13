@@ -119,7 +119,7 @@ const AddContact = () => {
   };
 
   return (
-    <div className="Background">
+    <div className="Background" style={{color:'white'}}>
       
       <Navbar />
       {/* <div > */}

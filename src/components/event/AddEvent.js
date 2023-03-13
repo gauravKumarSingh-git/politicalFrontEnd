@@ -1,258 +1,183 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Formik } from "formik";
+import { Form, Button } from "react-bootstrap";
 import AdminNav from "../navbar/AdminNav";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddEvent = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    eventName: "",
-    description: "",
-    location: "",
-    date: "",
-    startTime: "",
-    endTime: "",
-  });
-  const [formErrors, setFormErrors] = useState({})
-  const [showError, setShowError] = useState(false);
-  const [isValid, setIsValid] = useState({
-    eventName: true,
-    description: true,
-    location: true,
-    date: true,
-    startTime: true,
-    endTime: true,
-  });
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Validate the form data
-    if (
-      !formData.eventName ||
-      !formData.description ||
-      !formData.location ||
-      !formData.date ||
-      !formData.startTime ||
-      !formData.endTime
-    ) {
-      setShowError(true);
-      return;
-    }
-
-    setFormErrors(validate(formData))
-    console.log(formErrors)
-    if(Object.keys(formErrors).length === 0){
-      console.log(formData)
-      axios.post("http://localhost:8080/api/addEvent", formData)
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err))
-  
-      alert("Successfully added Event")
-      navigate("/admin/event")
-
-      setFormData({
-        eventName: "",
-        description: "",
-        location: "",
-        date: "",
-        startTime: "",
-        endTime: "",
-      });
-    }
-    
-    // Clear the form data
-    
-    setShowError(false);
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-    validateField(name, value);
-  };
-
-  const validateField = (name, value) => {
-    switch (name) {
-      case "eventName":
-        if (value.trim().length === 0) {
-          setIsValid((prevState) => ({ ...prevState, name: false }));
-        } else {
-          setIsValid((prevState) => ({ ...prevState, name: true }));
-        }
-        break;
-      case "description":
-        if (value.trim().length === 0) {
-          setIsValid((prevState) => ({ ...prevState, description: false }));
-        } else {
-          setIsValid((prevState) => ({ ...prevState, description: true }));
-        }
-        break;
-      case "location":
-        if (value.trim().length === 0) {
-          setIsValid((prevState) => ({ ...prevState, location: false }));
-        } else {
-          setIsValid((prevState) => ({ ...prevState, location: true }));
-        }
-        break;
-      case "date":
-        if (!value) {
-          setIsValid((prevState) => ({ ...prevState, date: false }));
-        } else {
-          setIsValid((prevState) => ({ ...prevState, date: true }));
-        }
-        break;
-      case "startTime":
-        if (!value) {
-          setIsValid((prevState) => ({ ...prevState, startTime: false }));
-        } else {
-          setIsValid((prevState) => ({ ...prevState, startTime: true }));
-        }
-        break;
-      case "endTime":
-        if (!value) {
-          setIsValid((prevState) => ({ ...prevState, endTime: false }));
-        } else {
-          setIsValid((prevState) => ({ ...prevState, endTime: true }));
-        }
-        break;
-      default:
-        break;
-    }
-  };
-
-  const validate = (value) => {
-    const error = {}
-    if(value.startTime > value.endTime){
-      error.startTime = "Start time cannot be after end time"
-      error.endTime = "End time cannot be before start time"
-    }
-    return error;
-  }
-
   return (
-    <div style={{backgroundImage: "linear-gradient(black,#0C1B6B)",color: "white", height:"800px"}}>
-      <AdminNav />
-      <div className="container mt-3 col-md-6 shadow p-5">
-     
-        <h1>Add Event</h1><br></br>
-        {showError && <Alert variant="danger">Please fill in all fields</Alert>}
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formName">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="text"
-              name="eventName"
-              placeholder="Enter name"
-              value={formData.eventName}
-              onChange={handleChange}
-              isInvalid={!isValid.eventName}
-          />
-            {!isValid.eventName && (
-              <Form.Control.Feedback type="invalid">
-                Please enter a name
-              </Form.Control.Feedback>
-            )}
-          </Form.Group>
+    <div>
+      <Formik
+        initialValues={{
+          eventName: "",
+          description: "",
+          location: "",
+          date: "",
+          startTime: "",
+          endTime: "",
+        }}
+        validate={(value) => {
+          const error = {};
+          if(!value.eventName){
+            error.eventName = "Please fill event name"
+          }
+          else if (!value.eventName.match("^[a-zA-Z0-9]+( [A-Za-z0-9]+)*$")) {
+            error.eventName = "Invalid event name";
+          }
 
-          <Form.Group controlId="formDescription">
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={3}
-              name="description"
-              placeholder="Enter description"
-              value={formData.description}
-              onChange={handleChange}
-              isInvalid={!isValid.description}
-            />
-            {!isValid.description && (
-              <Form.Control.Feedback type="invalid">
-                Please enter a description
-              </Form.Control.Feedback>
-            )}
-          </Form.Group>
+          if(!value.description){
+            error.description = "Please fill description"
+          }
 
-          <Form.Group controlId="formLocation">
-            <Form.Label>Location</Form.Label>
-            <Form.Control
-              type="text"
-              name="location"
-              placeholder="Enter location"
-              value={formData.location}
-              onChange={handleChange}
-              isInvalid={!isValid.location}
-            />
-            {!isValid.location && (
-              <Form.Control.Feedback type="invalid">
-                Please enter a location
-              </Form.Control.Feedback>
-            )}
-          </Form.Group>
+          if(!value.location){
+            error.location = "Please fill location"
+          }
+          else if (!value.location.match("^[a-zA-Z0-9]+( [A-Za-z0-9]+)*$")) {
+            error.location = "location should be alphanumeric";
+          }
 
-          <Form.Group controlId="formDate">
-            <Form.Label>Date</Form.Label>
-            <Form.Control
-              type="date"
-              name="date"
-              placeholder="Enter date"
-              value={formData.date}
-              min={new Date().toISOString().split("T")[0]}
-              onChange={handleChange}
-              isInvalid={!isValid.date}
-            />
-            {!isValid.date && (
-              <Form.Control.Feedback type="invalid">
-                Please enter a date
-              </Form.Control.Feedback>
-            )}
-          </Form.Group>
+          if(!value.date){
+            error.date = "Please enter date"
+          }
+          if(!value.startTime){
+            error.startTime = "Please fill start time"
+          }
+          if(!value.endTime){
+            error.endTime = "Please fill end time"
+          }
+          if (value.startTime > value.endTime) {
+            error.endTime = "End time cannot be before start time";
+          }
+          // console.log(error);
+          return error;
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          axios.post("http://localhost:8080/api/addEvent", values)
+          .then((data) => console.log(data))
+          .catch((err) => console.log(err))
+      
+          alert("Successfully added Event")
+          navigate("/admin/event")
+          setSubmitting(false);
+        }}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+        }) => (
+          <div
+            style={{
+              backgroundImage: "linear-gradient(black,#0C1B6B)",
+              color: "white",
+              height: "170vh",
+            }}
+          >
+            <AdminNav />
+            <div className="container mt-3 col-md-6 shadow p-5 rounded">
+              <h1>Add Event</h1>
+              <br></br>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="formName">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="eventName"
+                    placeholder="Enter name"
+                    value={values.eventName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <p className="text-danger">{errors.eventName && touched.eventName && errors.eventName}</p>
+                </Form.Group>
 
-          <Form.Group controlId="formStartTime">
-            <Form.Label>Start Time</Form.Label>
-            <Form.Control
-              type="time"
-              name="startTime"
-              placeholder="Enter start time"
-              value={formData.startTime}
-              onChange={handleChange}
-              isInvalid={!isValid.startTime}
-            />
-            {!isValid.startTime && (
-              <Form.Control.Feedback type="invalid">
-                Please enter a start time
-              </Form.Control.Feedback>
-            )}
-            {<p className="text-danger">{formErrors.startTime}</p>}
-          </Form.Group>
+                <Form.Group controlId="formDescription">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    name="description"
+                    placeholder="Enter description"
+                    value={values.description}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <p className="text-danger">{errors.description &&
+                    touched.description &&
+                    errors.description}</p>
+                  
+                </Form.Group>
 
-          <Form.Group controlId="formEndTime">
-            <Form.Label>End Time</Form.Label>
-            <Form.Control
-              type="time"
-              name="endTime"
-              placeholder="Enter end time"
-              value={formData.endTime}
-              onChange={handleChange}
-              isInvalid={!isValid.endTime}
-            />
-            {!isValid.endTime && (
-              <Form.Control.Feedback type="invalid">
-                Please enter an end time
-              </Form.Control.Feedback>
-            )}
-            {<p className="text-danger">{formErrors.endTime}</p>}
-          </Form.Group>
+                <Form.Group controlId="formLocation">
+                  <Form.Label>Location</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="location"
+                    placeholder="Enter location"
+                    value={values.location}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <p className="text-danger"> {errors.location && touched.location && errors.location}</p>
+                 
+                </Form.Group>
 
-          <Button variant="primary my-3" type="submit">
-            Add Event
-          </Button>
-        </Form>
-      </div>
+                <Form.Group controlId="formDate">
+                  <Form.Label>Date</Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="date"
+                    placeholder="Enter date"
+                    min={new Date().toISOString().split("T")[0]}
+                    value={values.date}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <p className="text-danger">{errors.date && touched.date && errors.date}</p>
+                  
+                </Form.Group>
+
+                <Form.Group controlId="formStartTime">
+                  <Form.Label>Start Time</Form.Label>
+                  <Form.Control
+                    type="time"
+                    name="startTime"
+                    placeholder="Enter start time"
+                    value={values.startTime}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <p className="text-danger">{errors.startTime && touched.startTime && errors.startTime}</p>
+                  
+                </Form.Group>
+
+                <Form.Group controlId="formEndTime">
+                  <Form.Label>End Time</Form.Label>
+                  <Form.Control
+                    type="time"
+                    name="endTime"
+                    placeholder="Enter end time"
+                    value={values.endTime}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <p className="text-danger">{errors.endTime && touched.endTime && errors.endTime}</p>
+                  
+                </Form.Group>
+
+                <Button variant="primary my-3" type="submit" disabled={isSubmitting}>
+                  Add Event
+                </Button>
+              </Form>
+            </div>
+          </div>
+        )}
+      </Formik>
     </div>
   );
 };

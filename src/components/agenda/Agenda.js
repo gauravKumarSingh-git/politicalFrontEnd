@@ -17,7 +17,7 @@ function Agenda() {
   }, [])
 
   return (
-    <div>
+    <div className='eventBackground'>
       <Navbar />
       <AllAgendas agendas = {agendas} />
     </div>

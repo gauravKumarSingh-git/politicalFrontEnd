@@ -8,7 +8,7 @@ function Home() {
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/3/31/New_Parliament_Building.jpg"
         alt="parliament"
-        style={{ width: "100%",height:"90.5vh"}}
+        style={{ width: "100%",height:"100vh"}}
       />
       <div className="col-4"></div>
       <div className="homeOverlay bg-dark" style={{opacity:'0.7'}}>

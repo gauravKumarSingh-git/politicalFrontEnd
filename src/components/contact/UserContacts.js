@@ -7,7 +7,6 @@ function UserContacts(props) {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>Description</th>
             <th></th>
@@ -17,7 +16,6 @@ function UserContacts(props) {
           {props.contacts &&
             props.contacts.sort((c1, c2) => c1.contactId - c2.contactId).map((contact) => (
               <tr key={contact.contactId}>
-                <td>{contact.contactId}</td>
                 <td>{contact.name}</td>
                 <td>{contact.description}</td>
                 <td><button id={`join${contact.contactId}`} className="btn btn-primary" onClick={() => props.handleUpdate(contact)}>Update</button></td>
